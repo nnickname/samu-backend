@@ -24,7 +24,7 @@ export class OpenAIService {
 
       return completion.data.choices[0].message?.content || "No answer available";
     } catch (error) {
-      console.error('OpenAI API Error:', error);
+      console.error('OpenAI API Error:');
       throw new Error('Failed to get answer from OpenAI');
     }
   }

@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 // Rutas
-app.use('/meeting', meetingRoutes);
+app.use('/api', meetingRoutes);
 
 // Manejo de errores global
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {

@@ -19,7 +19,7 @@ interface IChatMessage {
 }
 
 export interface IMeeting extends Document {
-  meetingId: string;
+  _id: string;
   transcription: {
     speakers: ISpeaker[];
     messages: IMessage[];
@@ -28,7 +28,6 @@ export interface IMeeting extends Document {
 }
 
 const MeetingSchema = new Schema({
-  meetingId: { type: String, required: true, unique: true },
   transcription: {
     speakers: [{
       id: Number,

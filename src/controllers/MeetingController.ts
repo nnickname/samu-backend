@@ -40,11 +40,11 @@ export class MeetingController {
   };
   askQuestion = async (req: Request, res: Response): Promise<void> => {
     try {
+      
       const { meetingId } = req.params;
       const { question } = req.body;
 
       const meeting = await this.meetingRepository.findByMeetingId(meetingId);
-      
       if (!meeting) {
         res.status(404).json({ message: 'Meeting not found' });
         return;
@@ -52,12 +52,15 @@ export class MeetingController {
 
       const answer = await this.openAIService.getAnswer(question, meeting.transcription);
       const updatedMeeting = await this.meetingRepository.addChatMessage(meetingId, question, answer);
-
-      res.json({
-        question,
+      if(updatedMeeting){ 
+        res.json({
+          question,
         answer,
-        timestamp: new Date()
-      });
+          timestamp: new Date()
+        });
+      }else{
+        res.status(400).json({ message: 'Error updating meeting' });
+      }
     } catch (error) {
       res.status(500).json({ message: 'Server error', error });
     }
