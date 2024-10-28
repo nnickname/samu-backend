@@ -1,27 +1,27 @@
-service: ai-chatbot
-
-plugins:
-  - serverless-typescript
-  - serverless-offline
+service: ai-chatbot-lambda
 
 provider:
   name: aws
   runtime: nodejs18.x
-  region: us-east-1
-  environment:
-    MONGODB_URI: ${env:MONGODB_URI}
-    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
-    DB_NAME: ${env:DB_NAME}
+  region: sa-east-1 # o tu región preferida
+  ecr:
+    images:
+      appimage:
+        path: ./
 
 functions:
-  chat:
-    handler: src/handlers/chat.handler
+  api:
+    image:
+      name: appimage
     events:
       - http:
-          path: chat
-          method: post
+          path: /meeting/{meetingId}/chat
+          method: GET
+          cors: true
+      - http:
+          path: /meeting/{meetingId}/chat
+          method: POST
           cors: true
 
-custom:
-  typescript:
-    srcPath: ./src
+plugins:
+  - serverless-offline # para pruebas locales

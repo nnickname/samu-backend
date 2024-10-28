@@ -1,19 +1,21 @@
-FROM public.ecr.aws/lambda/nodejs:18
-
-# Establecer el directorio de trabajo
-WORKDIR ${LAMBDA_TASK_ROOT}
-
-# Copiar package.json y package-lock.json
-COPY package*.json ./
-
-# Instalar dependencias
-RUN npm install
-
-# Copiar el código fuente
-COPY . .
-
-# Compilar TypeScript
+# Etapa de construcción
+FROM node:20 as builder
+WORKDIR /app
+COPY package*.json ./       
+COPY tsconfig.json ./        
+COPY src/ ./src/            
+RUN npm ci           
 RUN npm run build
+    
+# Etapa de producción
+FROM node:20
+WORKDIR /app
+COPY package*.json ./        
+RUN npm ci --production   
+COPY --from=builder /app/build/ ./build/ 
 
-# Configurar el handler
-CMD [ "dist/app.handler" ]
+# Exponemos el puerto que usará la aplicación
+EXPOSE 3000
+
+# Cambiamos el comando para iniciar la aplicación
+CMD ["node", "build/app.js" ]

@@ -12,7 +12,7 @@ yarn-error.log
 
 # Build output
 dist/
-build/
+.build/
 out/
 
 # IDE and editor files

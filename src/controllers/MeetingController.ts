@@ -26,7 +26,18 @@ export class MeetingController {
       res.status(500).json({ message: 'Server error', error });
     }
   };
-
+  createMeeting = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const meeting = await this.meetingRepository.createMeeting(req.body);
+      if(meeting){
+        res.status(201).json(meeting);
+      }else{
+        res.status(400).json({ message: 'Error creating meeting' });
+      }
+    } catch (error) {
+      res.status(500).json({ message: 'Server error', error });
+    }
+  };
   askQuestion = async (req: Request, res: Response): Promise<void> => {
     try {
       const { meetingId } = req.params;
