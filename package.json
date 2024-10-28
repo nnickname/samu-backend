@@ -1,0 +1,31 @@
+{
+  "name": "ai-chatbot",
+  "version": "1.0.0",
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.92",
+    "aws-lambda": "^1.0.7",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "openai": "^3.2.1",
+    "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.0",
+    "nodemon": "^2.0.21",
+    "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts",
+    "build": "tsc",
+    "docker:build": "docker build -t ai-chatbot-lambda .",
+    "docker:test-local": "docker run -p 9000:8080 ai-chatbot-lambda",
+    "ecr:login": "aws ecr get-login-password --region sa-east-1 --profile default | docker login --username AWS --password-stdin 851725233137.dkr.ecr.sa-east-1.amazonaws.com",
+    "ecr:build": "docker build -t ai-chatbot-lambda .",
+    "ecr:tag": "docker tag ai-chatbot-lambda:latest 851725233137.dkr.ecr.sa-east-1.amazonaws.com/ai-chatbot-lambda:latest",
+    "ecr:push": "docker push 851725233137.dkr.ecr.sa-east-1.amazonaws.com/ai-chatbot-lambda:latest",
+    "ecr:deploy": "npm run ecr:login && npm run ecr:build && npm run ecr:tag && npm run ecr:push"
+  }
+}

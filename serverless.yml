@@ -1,0 +1,27 @@
+service: ai-chatbot
+
+plugins:
+  - serverless-typescript
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    DB_NAME: ${env:DB_NAME}
+
+functions:
+  chat:
+    handler: src/handlers/chat.handler
+    events:
+      - http:
+          path: chat
+          method: post
+          cors: true
+
+custom:
+  typescript:
+    srcPath: ./src
