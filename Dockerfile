@@ -14,8 +14,6 @@ COPY package*.json ./
 RUN npm ci --production   
 COPY --from=builder /app/build/ ./build/ 
 
-# Permitir que Render establezca el puerto
-EXPOSE ${PORT}
 
 # Modificar el comando para usar la variable de entorno PORT
 CMD ["sh", "-c", "node build/app.js"]
