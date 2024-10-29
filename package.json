@@ -2,6 +2,7 @@
   "name": "ai-chatbot",
   "version": "1.0.0",
   "dependencies": {
+    "@emotion/babel-plugin": "^11.12.0",
     "@types/aws-lambda": "^8.10.92",
     "aws-lambda": "^1.0.7",
     "dotenv": "^16.0.3",
@@ -12,15 +13,24 @@
     "typescript": "^4.9.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@shelf/jest-mongodb": "^4.3.2",
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.14",
     "@types/node": "^18.15.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "nodemon": "^2.0.21",
     "serverless-offline": "^14.3.3",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.1"
   },
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.ts",
+    "test": "jest --coverage --detectOpenHandles",
     "build": "tsc",
     "docker:build": "docker build --platform linux/amd64 -t ai-chatbot-lambda .",
     "docker:test-local": "docker run -p 9000:8080 ai-chatbot-lambda",

@@ -13,6 +13,6 @@
     "rootDir": "./",
     "baseUrl": "."
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "__tests__/MeetingController.test.ts"],
   "exclude": ["node_modules"]
 }

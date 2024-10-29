@@ -6,13 +6,7 @@ dotenv.config();
 export class OpenAIService {
   private openai: OpenAIApi;
 
-  constructor() {
-    console.log(process.env.OPENAI_API_KEY);
-    
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY is not defined in environment variables');
-    }
-    
+  constructor() {    
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
@@ -33,7 +27,6 @@ export class OpenAIService {
       });
       return completion.data.choices[0].message?.content || "No answer available";
     } catch (error: any) {
-      console.error(error.response.data.error.message);
       throw new Error('Failed to get answer from OpenAI');
     }
   }
