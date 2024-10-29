@@ -34,4 +34,7 @@ export class MeetingRepository {
         throw error;
     }
   }
+  async getAllChats(): Promise<IMeeting[]> {
+    return Meeting.find();
+  }
 }

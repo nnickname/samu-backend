@@ -10,6 +10,8 @@ app.use(express.json());
 // Rutas
 app.get('/meeting/:meetingId/chat', meetingController.getChatHistory);
 app.post('/meeting/:meetingId/chat', meetingController.askQuestion);
-app.post('/meeting/', meetingController.createMeeting); // Nueva ruta para crear reunión
+app.get('/meeting/chats', meetingController.getAllChats);
+app.post('/meeting/', meetingController.createMeeting);
+
 // Exportar el handler para AWS Lambda
 export default app;

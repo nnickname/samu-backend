@@ -52,7 +52,6 @@ export class MeetingController {
 
       const answer = await this.openAIService.getAnswer(question, meeting.transcription);
       const updatedMeeting = await this.meetingRepository.addChatMessage(meetingId, question, answer);
-      console.log(updatedMeeting);
       if(updatedMeeting){ 
         res.json({
           question,
@@ -64,6 +63,14 @@ export class MeetingController {
       }
     } catch (error) {
       res.status(500).json({ message: 'Server error', error });
+    }
+  };
+  getAllChats = async (req: Request, res: Response) => {
+    try {
+        const chats = await this.meetingRepository.getAllChats();
+        return res.status(200).json(chats);
+    } catch (error) {
+        return res.status(500).json({ error: 'Error al obtener las conversaciones' });
     }
   };
 }
