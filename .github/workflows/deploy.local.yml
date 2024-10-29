@@ -40,5 +40,5 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
-      - name: Build Docker image
-        run: docker build -t my-app .
+      - name: Build application
+        run: npm run build
