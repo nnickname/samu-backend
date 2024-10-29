@@ -18,13 +18,13 @@ Crea una nueva conversación.
 
 ```bash
 src/
-├── controllers/
-│ └── MeetingController.ts
-├── routes/
-│ └── meeting.routes.ts
-├── models/
-├── services/
-└── utils/
+├───config
+├───controllers
+├───middleware
+├───models
+├───repositories
+├───routes
+└───services
 ```
 
 
