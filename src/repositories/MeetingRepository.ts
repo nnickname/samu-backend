@@ -7,7 +7,7 @@ export class MeetingRepository {
 
   async addChatMessage(meetingId: string, question: string, answer: string): Promise<IMeeting | null> {
     return Meeting.findOneAndUpdate(
-      { meetingId },
+      { _id: meetingId },
       {
         $push: {
           chatHistory: {
