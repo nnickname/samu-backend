@@ -29,7 +29,10 @@ src/
 
 
 ### `npm start`
-- Inicia el app en localhost
+- Inicia el app 
+
+### `npm run dev`
+- Inicia el app en modo desarrollo
 
 ### `npm test`
 - Inicia los testeos

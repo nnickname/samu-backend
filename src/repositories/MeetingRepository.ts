@@ -1,5 +1,5 @@
 import { Meeting, IMeeting } from '../models/Meeting';
-import JsonTranscription from '../../transcripcion.json';
+import { TRANSCRIPTION } from '../models/transcription';
 export class MeetingRepository {
   async findByMeetingId(meetingId: string): Promise<IMeeting | null> {
     return Meeting.findOne({ _id: meetingId });
@@ -23,7 +23,7 @@ export class MeetingRepository {
 
   async createMeeting(meetingData: Partial<IMeeting>): Promise<IMeeting> {
     try {
-        meetingData.transcription = JsonTranscription;
+        meetingData.transcription = TRANSCRIPTION;
         const meeting = new Meeting(meetingData);
         const savedMeeting = await meeting.save();
         return savedMeeting;
