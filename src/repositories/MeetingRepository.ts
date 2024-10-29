@@ -7,7 +7,7 @@ export class MeetingRepository {
 
   async addChatMessage(meetingId: string, question: string, answer: string): Promise<IMeeting | null> {
     return Meeting.findOneAndUpdate(
-      { meetingId },
+      { _id: meetingId },
       {
         $push: {
           chatHistory: {
@@ -25,13 +25,13 @@ export class MeetingRepository {
     try {
         meetingData.transcription = JsonTranscription;
         const meeting = new Meeting(meetingData);
-        console.log('Attempting to save meeting:', meeting);
         const savedMeeting = await meeting.save();
-        console.log('Meeting saved successfully:', savedMeeting);
         return savedMeeting;
     } catch (error) {
-        console.error('Error saving meeting:', error);
         throw error;
     }
+  }
+  async getAllChats(): Promise<IMeeting[]> {
+    return Meeting.find();
   }
 }
