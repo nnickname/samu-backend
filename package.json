@@ -4,7 +4,9 @@
   "dependencies": {
     "@emotion/babel-plugin": "^11.12.0",
     "@types/aws-lambda": "^8.10.92",
+    "@types/cors": "^2.8.17",
     "aws-lambda": "^1.0.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^7.0.0",

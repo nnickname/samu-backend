@@ -1,4 +1,7 @@
 # Samu Meetings Backend
+POSTMAN: 
+
+##https://www.postman.com/universal-shuttle-233497/samu-backend
 
 ## Endpoints
 

@@ -1,7 +1,16 @@
 import express from 'express';
+import cors from 'cors';
 import meetingRoutes from './routes/meeting.routes';
 
 const app = express();
+
+// Configuración de CORS - debe ir ANTES de las rutas
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Especifica el origen exacto
+  credentials: true, // Permite credenciales
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
+}));
 
 // Middleware para parsear JSON
 app.use(express.json());
