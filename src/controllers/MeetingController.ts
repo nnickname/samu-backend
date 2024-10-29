@@ -52,6 +52,7 @@ export class MeetingController {
 
       const answer = await this.openAIService.getAnswer(question, meeting.transcription);
       const updatedMeeting = await this.meetingRepository.addChatMessage(meetingId, question, answer);
+      console.log(updatedMeeting);
       if(updatedMeeting){ 
         res.json({
           question,
