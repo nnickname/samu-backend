@@ -6,7 +6,7 @@ const app = express();
 
 // Configuración de CORS - debe ir ANTES de las rutas
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Especifica el origen exacto
+  origin: '*', // Especifica el origen exacto
   credentials: true, // Permite credenciales
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
   allowedHeaders: ['Content-Type', 'Authorization'] // Headers permitidos
